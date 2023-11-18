@@ -4,7 +4,7 @@ const validator = require('validator')
 
 const signUp = async (req, res) => {
     try {
-        const { mail, password } = req.body
+        const { mail, password} = req.body
 
         if (!validator.isEmail(mail)) {
             return res.json({
