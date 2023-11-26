@@ -1,24 +1,38 @@
-require('dotenv').config()
-const express = require('express')
-const mongoose = require('mongoose'),
-      routes = require('./src/routes/index'),
-      cors = require('cors')
-const app = express()
+// Configuración de variables de entorno con dotenv
+require('dotenv').config();
 
+// Importación de librerías
+const express = require('express');
+const mongoose = require('mongoose');
+const routes = require('./src/routes/index');
+const cors = require('cors');
+
+// Creación de la instancia de Express
+const app = express();
+
+// Configuración de opciones CORS
 const corsOptions = {
     origin: '*', // Reemplaza esto con el dominio permitido
     methods: 'GET, PUT, POST, DELETE', 
-    Credentials: true, //Permite el envio de cookies o credenciales
-    optionsSuccesStatus: 204, // Configura el codigo de respuesta para las solicitudes
+    credentials: true, // Permite el envío de cookies o credenciales
+    optionsSuccessStatus: 204, // Configura el código de respuesta para las solicitudes
 };
 
-app.use(cors(corsOptions))
-app.use(express.json())  // parseo de la información que va a llegar, middleware
+// Middleware CORS
+app.use(cors(corsOptions));
 
-mongoose.connect(process.env.MONGO_URI)
 
-app.use('/v1', routes)
 
+// Middleware para parseo de la información JSON que va a llegar
+app.use(express.json());
+
+// Conexión a la base de datos MongoDB
+mongoose.connect(process.env.MONGO_URI);
+
+// Rutas para la API versionada bajo '/v1'
+app.use('/v1', routes);
+
+// Inicio del servidor en el puerto definido en las variables de entorno
 app.listen(process.env.PORT, () => {
-    console.log('Servidor inciado en el puerto: ' + process.env.PORT)
-})
+    console.log('Servidor iniciado en el puerto: ' + process.env.PORT);
+});

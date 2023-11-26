@@ -8,8 +8,8 @@ const userSchema = new mongoose.Schema({
     apellido: { type: String },
     direccion: { type: String },
     mail: { type: String },
-    password: { type: String},
-    products: { type: mongoose.ObjectId, ref: 'Products' }
+    password: { type: String}
+    
 })
 
 userSchema.methods.hashPassword = function(password){
