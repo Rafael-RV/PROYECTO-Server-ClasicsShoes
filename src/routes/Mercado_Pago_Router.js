@@ -19,15 +19,15 @@ Mercado_Pago.post("/", async (req, res) => {
       items: [
         {
           title: producto.modelo,
-          unit_price: producto.precio,
+          unit_price: parseFloat(producto.precio),
           currency_id: "CLP",
-          quantity: producto.cantidad
+          quantity: 1
         },
       ],
 
       back_urls: {
-        success: "https://clasics-shoes-api.onrender.com/exito",
-        failure: "https://clasics-shoes-api.onrender.com/fallo",
+        success: "https://github.com/Rafael-RV/PROYECTO-Server-ClasicsShoes.git",
+        failure: "https://github.com/Rafael-RV/PROYECTO-Server-ClasicsShoes.git/fallo",
       },
 
       auto_return: "approved",
@@ -38,7 +38,8 @@ Mercado_Pago.post("/", async (req, res) => {
     res.status(200).json(respuesta.response.init_point);
   } catch (error) {
     console.error(error.message);
-    res.status(500).json(error.message);
+    console.error("Error al crear preferencia de Mercado Pago:", error);
+    res.status(500).json({ error: "Error al procesar la solicitud" });
   }
 });
 
