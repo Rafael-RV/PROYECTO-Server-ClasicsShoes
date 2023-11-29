@@ -26,8 +26,8 @@ Mercado_Pago.post("/", async (req, res) => {
       ],
 
       back_urls: {
-        success: "https://github.com/Rafael-RV/PROYECTO-ECOMMERCE-ClasicsShoes.git",
-        failure: "https://github.com/Rafael-RV/PROYECTO-ECOMMERCE-ClasicsShoes.git/fallo",
+        success: "https://rafael-rv.github.io/PROYECTO-ECOMMERCE-ClasicsShoes/",
+        failure: "https://rafael-rv.github.io/PROYECTO-ECOMMERCE-ClasicsShoes/",
       },
 
       auto_return: "approved",
