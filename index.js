@@ -8,8 +8,6 @@ const routes = require('./src/routes/index');
 const cors = require('cors');
 
 
-//Mercado pago
-const Mercado_Pago = require ("./src/routes/Mercado_Pago_Router");
 
 // Creación de la instancia de Express
 const app = express();
@@ -28,7 +26,7 @@ app.use(cors(corsOptions));
 // Middleware para parseo de la información JSON que va a llegar
 app.use(express.json());
 
-app.use("/Mercado_Pago", Mercado_Pago)
+// app.use("https://clasics-shoes-api.onrender.com/Mercado_Pago", Mercado_Pago)
 
 // Conexión a la base de datos MongoDB
 mongoose.connect(process.env.MONGO_URI);
