@@ -6,38 +6,40 @@ dotenv.config();
 const Mercado_Pago = Router();
 
 mercadopago.configure({
-    access_token: process.env.ACCESS_TOKEN || "",
+  access_token: process.env.ACCESS_TOKE || "",
+  client_id: process.env.CLIENT_ID || "",
+  client_secret: process.env.CLIENT_SECRET || "",
 });
 
 Mercado_Pago.post("/", async (req, res) => {
-    try {
-        const preference = {
-            items: [
-                {
-                    title: "Computadora",
-                    picture_URL: "http:dfsffs",
-                    unit_price: 200,
-                    currency_id: "CLP",
-                    description: "zapatos",
-                    quantity: 1,
-                },
-            ],
+  const producto = req.body;
 
-            back_urls: {
-                success: "https://proyecto-api-autenticacion.onrender.com/v1/Mercado_Pago/success",
-                failure: "https://proyecto-api-autenticacion.onrender.com/v1/Mercado_Pago/fallo",
-            },
+  try {
+    const preference = {
+      items: [
+        {
+          title: producto.modelo,
+          unit_price: producto.precio,
+          currency_id: "CLP",
+          quantity: producto.cantidad
+        },
+      ],
 
-            auto_return: "approved",
-        };
+      back_urls: {
+        success: "https://github.com/Rafael-RV/PROYECTO-ECOMMERCE-ClasicsShoes.git/home",
+        failure: "https://github.com/Rafael-RV/PROYECTO-ECOMMERCE-ClasicsShoes.git/fallo/home",
+      },
 
-        const respuesta = await mercadopago.preferences.create(preference);
-        console.log(respuesta);
-        res.status(200).json(respuesta.response.init_point);
-    } catch (error) {
-        console.error(error.message);
-        res.status(500).json(error.message);
-    }
+      auto_return: "approved",
+    };
+
+    const respuesta = await mercadopago.preferences.create(preference);
+    console.log(respuesta);
+    res.status(200).json(respuesta.response.init_point);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json(error.message);
+  }
 });
 
-module.exports = Mercado_Pago;  
+module.exports = Mercado_Pago;

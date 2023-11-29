@@ -6,7 +6,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const routes = require('./src/routes/index');
 const cors = require('cors');
-const Mercado_Pago = require("./src/routes/Mercado_Pago_Router")
+
+
+//Mercado pago
+const Mercado_Pago = require ("./src/routes/Mercado_Pago_Router");
 
 // Creación de la instancia de Express
 const app = express();
@@ -22,12 +25,10 @@ const corsOptions = {
 // Middleware CORS
 app.use(cors(corsOptions));
 
-
-//Mercado Pago
-app.use("/Mercado_Pago", Mercado_Pago);
-
 // Middleware para parseo de la información JSON que va a llegar
 app.use(express.json());
+
+app.use("/Mercado_Pago", Mercado_Pago)
 
 // Conexión a la base de datos MongoDB
 mongoose.connect(process.env.MONGO_URI);
