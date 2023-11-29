@@ -21,7 +21,7 @@ Mercado_Pago.post("/", async (req, res) => {
           title: producto.modelo,
           unit_price: producto.precio,
           currency_id: "CLP",
-          quantity: producto.cantidad
+          quantity: 1
         },
       ],
 
