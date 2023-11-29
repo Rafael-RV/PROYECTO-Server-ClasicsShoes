@@ -1,15 +1,46 @@
-const express = require('express');
+const { Router } = require("express");
 const mercadopago = require("mercadopago");
-const router = express.Router();
-const accessToken = "TEST-7976763045465946-111720-0f4a9c6447c6dd4b2714f37bf7d2eae8-1553213749"
-const {Mercado_Pago} = require('../controllers/MercadoPago.controller')
-const auth = require('../middlewares/auth')
+const dotenv = require("dotenv");
+dotenv.config();
+
+const Mercado_Pago = Router();
 
 mercadopago.configure({
-    access_token: accessToken || "",
-})
+  access_token: process.env.ACCESS_TOKEN || "",
+  client_id: process.env.CLIENT_ID || "",
+  client_secret: process.env.CLIENT_SECRET || "",
+});
 
-router.post("/", Mercado_Pago )
+Mercado_Pago.post("/", async (req, res) => {
+  const producto = req.body;
 
+  try {
+    const preference = {
+      items: [
+        {
+          title: producto.modelo,
+          unit_price: producto.precio,
+          currency_id: "CLP",
+          quantity: 1
+        },
+      ],
 
-module.exports = router
+      back_urls: {
+        success: "https://github.com/Rafael-RV/PROYECTO-ECOMMERCE-ClasicsShoes.git",
+        failure: "https://github.com/Rafael-RV/PROYECTO-ECOMMERCE-ClasicsShoes.git/fallo",
+      },
+
+      auto_return: "approved",
+    };
+
+    const respuesta = await mercadopago.preferences.create(preference);
+    console.log(respuesta);
+    res.status(200).json(respuesta.response.init_point);
+  } catch (error) {
+    console.error(error.message);
+    console.error("Error al crear preferencia de Mercado Pago:", error);
+    res.status(500).json({ error: "Error al procesar la solicitud" });
+  }
+});
+
+module.exports = Mercado_Pago;
