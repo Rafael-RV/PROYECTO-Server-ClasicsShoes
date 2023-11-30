@@ -12,14 +12,14 @@ mercadopago.configure({
 });
 
 Mercado_Pago.post("/", async (req, res) => {
-  const productDetails = req.body;
+  const body = req.body;
 
   try {
     const preference = {
       items: [
         {
-          title: productDetails.modelo, 
-          unit_price: productDetails.precio,
+          title: body.modelo, 
+          unit_price: body.precio,
           currency_id: "CLP",
           quantity: 1,
         },
