@@ -1,7 +1,9 @@
-PROYECTO-Server-ClasicsShoes
-Este repositorio alberga el backend de un E-commerce para una tienda de zapatos.
-----
+# PROYECTO-Server-ClasicsShoes
 
-El Front End del proyecto está desplegado en la siguiente URL: "https://rafael-rv.github.io/PROYECTO-ECOMMERCE-ClasicsShoes/"
----
-Repositorio del proyecto Front End: https://github.com/Rafael-RV/PROYECTO-ECOMMERCE-ClasicsShoes.git
+Este repositorio contiene el backend de un E-commerce para una tienda de zapatos.
+
+## Información del Proyecto
+
+El frontend del proyecto está desplegado en la siguiente URL: [Frontend E-commerce ClasicsShoes](https://rafael-rv.github.io/PROYECTO-ECOMMERCE-ClasicsShoes/)
+
+Repositorio del proyecto frontend: [Repositorio Frontend](https://github.com/Rafael-RV/PROYECTO-ECOMMERCE-ClasicsShoes.git)
